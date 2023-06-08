@@ -1,0 +1,36 @@
+INSERT INTO
+    "animals" (
+        animal,
+        breed,
+        gender,
+        age,
+        size,
+        city,
+        state,
+        dewormed,
+        castrated,
+        vaccinated,
+        special_care,
+        picture,
+        created_at,
+        udpated_at,
+        deleted_at
+    )
+VALUES
+    (
+        'Felix',
+        'Siames',
+        'Macho',
+        1,
+        'Pequeno',
+        'Franca',
+        'SP',
+        'Sim',
+        'Sim',
+        'Sim',
+        'Não',
+        '',
+        now(),
+        now(),
+        null
+    )

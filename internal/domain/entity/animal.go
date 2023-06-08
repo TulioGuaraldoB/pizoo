@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"database/sql"
+	"time"
+)
+
 type Animal struct {
 	ID          uint
 	Name        string
@@ -14,4 +19,14 @@ type Animal struct {
 	Vaccinated  string
 	SpecialCare string
 	Picture     string
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
+	DeletedAt   sql.NullTime
+}
+
+type IAnimalRepository interface {
+	GetAllAnimals() ([]Animal, error)
+	GetAnimalById(animalId uint) (*Animal, error)
+	CreateAnimal(animal *Animal) error
+	DeleteAnimal(animalId uint) error
 }

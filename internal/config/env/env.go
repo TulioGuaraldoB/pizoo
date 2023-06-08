@@ -14,6 +14,7 @@ type EnvironmentVariable struct {
 	PostgresHost     string
 	PostgresPort     string
 	PostgresDatabase string
+	Port             string
 }
 
 var Env *EnvironmentVariable
@@ -29,6 +30,7 @@ func GetEnvironmentVariable() *EnvironmentVariable {
 		PostgresHost:     os.Getenv("POSTGRES_HOST"),
 		PostgresPort:     os.Getenv("POSTGRES_PORT"),
 		PostgresDatabase: os.Getenv("POSTGRES_DATABASE"),
+		Port:             os.Getenv("PORT"),
 	}
 
 	checkVariables()
