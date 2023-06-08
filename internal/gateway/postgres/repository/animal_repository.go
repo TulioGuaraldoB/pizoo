@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-	"time"
 
 	"github.com/TulioGuaraldoB/pizoo/internal/domain/entity"
 	"github.com/TulioGuaraldoB/pizoo/internal/gateway/postgres"
@@ -119,7 +118,7 @@ func (r *animalRepository) CreateAnimal(animal *entity.Animal) error {
 }
 
 func (r *animalRepository) DeleteAnimal(animalId uint) error {
-	_, err := r.db.Exec(r.context, `UPDATE "animals" SET "animals"."deleted_at" = $1 AND "animals"."id" = $2`, time.Now(), animalId)
+	_, err := r.db.Exec(r.context, `UPDATE "animals" SET "deleted_at" = now() WHERE "id" = $1`, animalId)
 	if err != nil {
 		return err
 	}
