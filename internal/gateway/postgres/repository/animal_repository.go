@@ -95,7 +95,23 @@ func (r *animalRepository) GetAnimalById(animalId uint) (*entity.Animal, error) 
 }
 
 func (r *animalRepository) CreateAnimal(animal *entity.Animal) error {
-	if _, err := r.db.Exec(r.context, `INSERT INTO "animals" (animal, breed, gender, age, size, city, state, dewormed, castrated, vaccinated, special_care, picture, created_at, udpated_at, deleted_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`); err != nil {
+	if _, err := r.db.Exec(r.context, `INSERT INTO "animals" (animal, breed, gender, age, size, city, state, dewormed, castrated, vaccinated, special_care, picture, created_at, udpated_at, deleted_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
+		animal.Name,
+		animal.Breed,
+		animal.Gender,
+		animal.Age,
+		animal.Size,
+		animal.City,
+		animal.State,
+		animal.Dewormed,
+		animal.Castrated,
+		animal.Vaccinated,
+		animal.SpecialCare,
+		animal.Picture,
+		animal.CreatedAt,
+		animal.UpdatedAt,
+		animal.DeletedAt,
+	); err != nil {
 		return err
 	}
 
