@@ -69,3 +69,58 @@ func TestGetAllAnimalsUsecase(t *testing.T) {
 		})
 	}
 }
+
+func TestGetAnimalByIdUsecase(t *testing.T) {
+	mockAnimal := new(entity.Animal)
+	mockAnimal.ID = 1
+	mockAnimal.Name = "zeze"
+	mockAnimal.Breed = "asdfasdfasdf"
+	mockAnimal.Gender = "sdafasdfasasdfdsa"
+	mockAnimal.Age = 3
+	mockAnimal.Size = "asdfasdfasdf"
+	mockAnimal.City = "asdfasdf"
+	mockAnimal.State = "qwetwqert"
+	mockAnimal.Dewormed = "wqer"
+	mockAnimal.Castrated = "qwe"
+	mockAnimal.Vaccinated = "nbv"
+	mockAnimal.SpecialCare = "sadf"
+	mockAnimal.Picture = "sda"
+	mockAnimal.CreatedAt = time.Now()
+	mockAnimal.UpdatedAt = time.Now()
+	mockAnimal.DeletedAt = sql.NullTime{}
+
+	tests := []struct {
+		description   string
+		setMocks      func(mar *mock.MockIAnimalRepository)
+		isErrExpected bool
+	}{
+		{
+			description: "should return no error",
+			setMocks: func(mar *mock.MockIAnimalRepository) {
+				mar.EXPECT().GetAnimalById(mockAnimal.ID).Return(mockAnimal, nil)
+			},
+		},
+	}
+
+	for _, tc := range tests { // testCase
+		t.Run(tc.description, func(t *testing.T) {
+			// Arrange
+			controller := gomock.NewController(t)
+			defer controller.Finish()
+
+			mar := mock.NewMockIAnimalRepository(controller)
+			tc.setMocks(mar)
+
+			// Act
+			animalUsecase := usecase.NewAnimalUsecase(mar)
+			_, err := animalUsecase.GetAnimalById(mockAnimal.ID)
+			// Assert
+			if !tc.isErrExpected {
+				assert.NoError(t, err)
+				return
+			}
+
+			assert.Error(t, err)
+		})
+	}
+}

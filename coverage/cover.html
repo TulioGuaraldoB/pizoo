@@ -55,11 +55,11 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/TulioGuaraldoB/pizoo/internal/domain/usecase/animal_usecase.go (25.0%)</option>
+				<option value="file0">github.com/TulioGuaraldoB/pizoo/internal/domain/usecase/animal_usecase.go (50.0%)</option>
 				
 				<option value="file1">github.com/TulioGuaraldoB/pizoo/internal/domain/usecase/usecase.go (100.0%)</option>
 				
-				<option value="file2">github.com/TulioGuaraldoB/pizoo/internal/gateway/postgres/repository/animal_repository.go (43.3%)</option>
+				<option value="file2">github.com/TulioGuaraldoB/pizoo/internal/gateway/postgres/repository/animal_repository.go (76.7%)</option>
 				
 				</select>
 			</div>
@@ -85,7 +85,7 @@ func (u *animalUsecase) GetAllAnimals() ([]entity.Animal, error) <span class="co
         return u.animalRepository.GetAllAnimals()
 }</span>
 
-func (u *animalUsecase) GetAnimalById(animalId uint) (*entity.Animal, error) <span class="cov0" title="0">{
+func (u *animalUsecase) GetAnimalById(animalId uint) (*entity.Animal, error) <span class="cov8" title="1">{
         return u.animalRepository.GetAnimalById(animalId)
 }</span>
 
@@ -172,14 +172,14 @@ func (r *animalRepository) GetAllAnimals() ([]entity.Animal, error) <span class=
         <span class="cov8" title="1">return animals, nil</span>
 }
 
-func (r *animalRepository) GetAnimalById(animalId uint) (*entity.Animal, error) <span class="cov0" title="0">{
+func (r *animalRepository) GetAnimalById(animalId uint) (*entity.Animal, error) <span class="cov8" title="1">{
         animal := new(entity.Animal)
         rows, err := r.db.Query(r.context, `SELECT * FROM "animals" WHERE "animals"."id" = $1 AND "animals"."deleted_at" IS NULL`, animalId)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov8" title="1">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">for rows.Next() </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">for rows.Next() </span><span class="cov8" title="1">{
                 if err := rows.Scan(
                         &amp;animal.ID,
                         &amp;animal.Name,
@@ -197,16 +197,16 @@ func (r *animalRepository) GetAnimalById(animalId uint) (*entity.Animal, error) 
                         &amp;animal.CreatedAt,
                         &amp;animal.UpdatedAt,
                         &amp;animal.DeletedAt,
-                ); err != nil </span><span class="cov0" title="0">{
+                ); err != nil </span><span class="cov8" title="1">{
                         return nil, err
                 }</span>
         }
 
-        <span class="cov0" title="0">if err := rows.Err(); err != nil </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">if err := rows.Err(); err != nil </span><span class="cov8" title="1">{
                 return nil, err
         }</span>
 
-        <span class="cov0" title="0">return animal, nil</span>
+        <span class="cov8" title="1">return animal, nil</span>
 }
 
 func (r *animalRepository) CreateAnimal(animal *entity.Animal) error <span class="cov0" title="0">{
