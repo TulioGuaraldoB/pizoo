@@ -6,10 +6,13 @@ import (
 	"github.com/TulioGuaraldoB/pizoo/internal/gateway/handler"
 	"github.com/TulioGuaraldoB/pizoo/internal/gateway/postgres"
 	"github.com/TulioGuaraldoB/pizoo/internal/gateway/postgres/repository"
+	"github.com/TulioGuaraldoB/pizoo/pkg/logger"
 	"github.com/kataras/iris/v12"
 )
 
 func main() {
+	logger.LogInfo("RUNNING")
+
 	// Environment Variable
 	env.GetEnvironmentVariable()
 

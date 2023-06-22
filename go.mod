@@ -3,6 +3,7 @@ module github.com/TulioGuaraldoB/pizoo
 go 1.19
 
 require (
+	github.com/fatih/color v1.15.0
 	github.com/golang/mock v1.6.0
 	github.com/jackc/pgx/v5 v5.3.1
 	github.com/joho/godotenv v1.5.1
@@ -39,6 +40,8 @@ require (
 	github.com/klauspost/compress v1.16.0 // indirect
 	github.com/mailgun/raymond/v2 v2.0.48 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.23 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.10.0 // indirect
