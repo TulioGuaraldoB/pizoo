@@ -2,14 +2,14 @@ package handler
 
 import (
 	"github.com/TulioGuaraldoB/pizoo/internal/domain/usecase"
-	"github.com/kataras/iris/v12"
+	"github.com/gofiber/fiber/v2"
 )
 
 type IAnimalHandler interface {
-	GetAllAnimals(c iris.Context)
-	GetAnimalById(c iris.Context)
-	CreateAnimal(c iris.Context)
-	DeleteAnimalById(c iris.Context)
+	GetAllAnimals(ctx *fiber.Ctx) error
+	GetAnimalById(ctx *fiber.Ctx) error
+	CreateAnimal(ctx *fiber.Ctx) error
+	DeleteAnimalById(ctx *fiber.Ctx) error
 }
 
 func NewAnimalHandler(animalUsecase usecase.IAnimalUsecase) IAnimalHandler {

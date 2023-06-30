@@ -7,7 +7,7 @@ import (
 	"github.com/TulioGuaraldoB/pizoo/internal/gateway/postgres"
 	"github.com/TulioGuaraldoB/pizoo/internal/gateway/postgres/repository"
 	"github.com/TulioGuaraldoB/pizoo/pkg/logger"
-	"github.com/kataras/iris/v12"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
@@ -28,11 +28,11 @@ func main() {
 	// Handlers
 	animalHandler := handler.NewAnimalHandler(animalUsecase)
 
-	app := iris.New()
+	app := fiber.New()
 	app.Get("/api/animal/", animalHandler.GetAllAnimals)
-	app.Get("/api/animal/{id:uint64}", animalHandler.GetAnimalById)
+	app.Get("/api/animal/:id", animalHandler.GetAnimalById)
 	app.Post("/api/animal/", animalHandler.CreateAnimal)
-	app.Patch("/api/animal/{id:uint64}", animalHandler.DeleteAnimalById)
+	app.Patch("/api/animal/:id", animalHandler.DeleteAnimalById)
 
 	app.Listen(":" + env.Env.Port)
 }
